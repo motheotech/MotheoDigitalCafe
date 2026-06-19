@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — Motheo Digital Cafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="favicon.png"/>
+<link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#04080f;--navy:#060d1e;--blue:#22d3ee;--blue2:#06b6d4;--dim:#8ba3cc;--faint:#1a2740;--white:#f4f8ff;--mono:'JetBrains Mono',monospace;--head:'Bebas Neue',cursive;--body:'Space Grotesk',sans-serif;--border:rgba(21,87,255,.15)}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--ink);color:var(--white);overflow-x:hidden;cursor:none}
+#cursor{position:fixed;width:12px;height:12px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .2s,height .2s}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(21,87,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .1s linear,top .1s linear}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(21,87,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(21,87,255,.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 3rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(4,8,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(21,87,255,.12)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-icon{width:36px;height:36px;background:var(--blue);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:1.3rem;color:#fff;transition:transform .2s}
+.brand:hover .brand-icon{transform:rotate(-8deg) scale(1.1)}
+.brand-text{font-family:var(--head);font-size:1.2rem;letter-spacing:2px;color:var(--white)}
+.brand-sub{font-family:var(--mono);font-size:.55rem;color:var(--blue);letter-spacing:3px;display:block;margin-top:-2px}
+.nav-links{display:flex;gap:.2rem;list-style:none;align-items:center}
+.nav-links a{color:var(--dim);text-decoration:none;font-size:.82rem;font-weight:500;padding:.4rem .9rem;border-radius:4px;transition:all .2s}
+.nav-links a:hover{color:var(--white);background:rgba(21,87,255,.12)}
+.nav-links a.active{color:var(--white)}
+.nav-book{background:var(--blue)!important;color:var(--ink)!important;font-weight:600!important;border-radius:6px!important}
+.nav-book:hover{background:var(--blue2)!important;transform:translateY(-1px)!important}
+
+/* HERO */
+.page-hero{padding:9rem 3rem 5rem;max-width:1300px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{font-family:var(--mono);font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:.8rem}
+.page-hero h1{font-family:var(--head);font-size:7rem;line-height:.9;color:var(--white)}
+.page-hero h1 .outline{-webkit-text-stroke:1px rgba(255,255,255,.22);color:transparent;display:block}
+.page-hero p{color:var(--dim);font-size:1rem;line-height:1.8;max-width:560px;margin-top:1.5rem}
+
+/* CONTACT LAYOUT */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;max-width:1300px;margin:0 auto;padding:0 3rem 6rem;position:relative;z-index:1;align-items:start}
+
+/* FORM */
+.form-card{background:var(--navy);border:1px solid var(--border);border-radius:16px;padding:3rem}
+.form-card h2{font-family:var(--head);font-size:2.2rem;letter-spacing:1px;margin-bottom:.3rem}
+.form-card p{color:var(--dim);font-size:.85rem;margin-bottom:2rem}
+.fg{margin-bottom:1.3rem}
+.fg label{font-family:var(--mono);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:.5rem}
+.fg label .req{color:#ff4466}
+.fg input,.fg select,.fg textarea{width:100%;padding:.8rem 1rem;background:rgba(21,87,255,.04);border:1px solid rgba(21,87,255,.15);border-radius:8px;color:var(--white);font-family:var(--body);font-size:.9rem;transition:all .25s;appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--blue);background:rgba(21,87,255,.08);box-shadow:0 0 0 3px rgba(21,87,255,.12)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--dim)}
+.fg select option{background:var(--navy);color:var(--white)}
+.fg textarea{resize:vertical;min-height:130px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* SUBJECT PILLS */
+.subject-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.5rem}
+.s-pill{font-family:var(--mono);font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--dim);border:1px solid rgba(21,87,255,.15);padding:6px 12px;border-radius:4px;cursor:none;transition:all .2s}
+.s-pill:hover,.s-pill.active{background:rgba(21,87,255,.12);border-color:var(--blue);color:var(--white)}
+
+.submit-btn{width:100%;padding:1rem;background:var(--blue);color:#fff;border:none;border-radius:10px;font-family:var(--head);font-size:1.3rem;letter-spacing:2px;cursor:none;transition:all .25s;margin-top:1rem;position:relative;overflow:hidden}
+.submit-btn:hover{background:var(--blue2);transform:translateY(-3px);box-shadow:0 8px 28px rgba(21,87,255,.4)}
+.submit-btn:disabled{background:#2a3a50;cursor:not-allowed;transform:none;box-shadow:none}
+.alert{border-radius:8px;padding:1rem 1.2rem;margin-top:1rem;font-size:.88rem;display:none;border:1px solid}
+.alert.success{background:rgba(0,200,100,.08);color:#00c864;border-color:rgba(0,200,100,.2)}
+.alert.error{background:rgba(255,50,80,.08);color:#ff4466;border-color:rgba(255,50,80,.2)}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:1.5rem;position:sticky;top:84px}
+.side-card{background:var(--navy);border:1px solid var(--border);border-radius:14px;padding:2rem}
+.side-card h3{font-family:var(--head);font-size:1.3rem;letter-spacing:1px;margin-bottom:1.5rem;color:var(--white)}
+
+.contact-item{display:flex;gap:1rem;margin-bottom:1.2rem;align-items:flex-start;padding:1rem;border-radius:10px;border:1px solid transparent;transition:all .3s;cursor:default}
+.contact-item:hover{background:rgba(21,87,255,.06);border-color:rgba(21,87,255,.15)}
+.ci-icon{font-size:1.4rem;min-width:32px}
+.ci-label{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;color:var(--blue);text-transform:uppercase;display:block;margin-bottom:3px}
+.ci-val{font-size:.88rem;color:var(--dim);line-height:1.5}
+.ci-val a{color:var(--dim);text-decoration:none;transition:color .2s}
+.ci-val a:hover{color:var(--white)}
+
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.8rem}
+.hour-item{background:rgba(21,87,255,.05);border-radius:8px;padding:.8rem;border:1px solid rgba(21,87,255,.1);transition:all .25s;cursor:default}
+.hour-item:hover{border-color:rgba(21,87,255,.25);background:rgba(21,87,255,.1)}
+.hour-day{font-family:var(--mono);font-size:.58rem;letter-spacing:2px;color:var(--blue);text-transform:uppercase;display:block;margin-bottom:3px}
+.hour-time{font-size:.85rem;color:var(--dim)}
+
+.quick-links{display:flex;flex-direction:column;gap:.6rem}
+.quick-link{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1rem;background:rgba(21,87,255,.05);border:1px solid rgba(21,87,255,.1);border-radius:8px;text-decoration:none;color:var(--dim);font-size:.88rem;transition:all .25s}
+.quick-link:hover{background:rgba(21,87,255,.12);border-color:var(--blue);color:var(--white);transform:translateX(4px)}
+.quick-link span{font-size:.75rem;color:var(--blue)}
+
+.wa-btn{display:block;background:#25D366;color:#fff;text-align:center;padding:1rem;border-radius:10px;font-family:var(--head);font-size:1.1rem;letter-spacing:1px;text-decoration:none;transition:all .25s}
+.wa-btn:hover{background:#1da851;transform:translateY(-3px);box-shadow:0 8px 24px rgba(37,211,102,.3)}
+
+/* FAQ */
+.section{padding:4rem 3rem;max-width:1300px;margin:0 auto;position:relative;z-index:1}
+.sec-label{font-family:var(--mono);font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:.8rem}
+.sec-title{font-family:var(--head);font-size:3.5rem;letter-spacing:1px;color:var(--white);margin-bottom:2rem}
+.faq-list{display:flex;flex-direction:column;gap:1px;background:rgba(21,87,255,.07);border:1px solid rgba(21,87,255,.08);border-radius:12px;overflow:hidden}
+.faq-item{background:var(--navy);overflow:hidden}
+.faq-q{padding:1.5rem 2rem;display:flex;justify-content:space-between;align-items:center;cursor:none;transition:background .2s;font-weight:500;font-size:.95rem}
+.faq-q:hover{background:rgba(21,87,255,.06)}
+.faq-icon{font-family:var(--head);font-size:1.2rem;color:var(--blue);transition:transform .3s;min-width:20px;text-align:center}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;padding:0 2rem}
+.faq-a p{color:var(--dim);font-size:.9rem;line-height:1.75;padding-bottom:1.5rem}
+.faq-item.open .faq-a{max-height:200px;padding-top:0 2rem}
+
+footer{background:var(--navy);border-top:1px solid rgba(21,87,255,.1);padding:4rem 3rem 2rem}
+.footer-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:3rem;margin-bottom:3rem}
+.footer-brand-name{font-family:var(--head);font-size:1.4rem;letter-spacing:3px;color:var(--white)}
+.footer-desc{color:var(--dim);font-size:.85rem;line-height:1.7;margin-top:.8rem}
+.footer-col h4{font-family:var(--mono);font-size:.6rem;letter-spacing:4px;color:var(--blue);text-transform:uppercase;margin-bottom:1.2rem}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.7rem}
+.footer-col ul li a{color:var(--dim);text-decoration:none;font-size:.88rem;transition:all .2s;display:inline-block}
+.footer-col ul li a:hover{color:var(--white);transform:translateX(5px)}
+.footer-col ul li span{color:var(--dim);font-size:.85rem}
+.footer-bottom{max-width:1300px;margin:0 auto;border-top:1px solid rgba(21,87,255,.07);padding-top:1.5rem;display:flex;justify-content:space-between}
+.footer-bottom p{font-family:var(--mono);font-size:.62rem;letter-spacing:2px;color:rgba(255,255,255,.18);text-transform:uppercase}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s,transform .65s}
+.reveal.in{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-28px);transition:opacity .65s,transform .65s}
+.reveal-l.in{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(28px);transition:opacity .65s,transform .65s}
+.reveal-r.in{opacity:1;transform:none}
+
+#btt{position:fixed;bottom:2rem;right:2rem;z-index:500;width:44px;height:44px;background:var(--blue);border:none;border-radius:8px;color:var(--ink);font-size:1.1rem;cursor:none;opacity:0;transform:translateY(20px);transition:all .3s;box-shadow:0 4px 20px rgba(21,87,255,.4)}
+#btt.show{opacity:1;transform:translateY(0)}
+#btt:hover{background:var(--blue2);transform:translateY(-3px)}
+
+@media(max-width:900px){
+  .contact-layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .form-row{grid-template-columns:1fr}
+  .page-hero h1{font-size:4rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  nav{padding:0 1.5rem}
+  .page-hero,.contact-layout{padding-left:1.5rem;padding-right:1.5rem}
+  .section{padding:3rem 1.5rem}
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.85)}}
+.soon-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.28);color:var(--blue);padding:4px 11px;border-radius:5px;font-family:var(--mono);font-size:.55rem;letter-spacing:2px;text-transform:uppercase}
+.avail-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(22,215,127,.1);border:1px solid rgba(22,215,127,.35);color:#16d77f;padding:4px 11px;border-radius:5px;font-family:var(--mono);font-size:.55rem;letter-spacing:2px;text-transform:uppercase}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#16d77f;animation:pulse 2s infinite}
+.is-soon{opacity:.45;filter:saturate(.35)}
+.is-soon .svc-link,.is-soon .btn{pointer-events:none}
+</style>
+</head>
+<body>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div class="grid-bg"></div>
+
+<nav>
+  <a href="index.html" class="brand">
+    <img class="brand-logo" src="emblem.png" alt="Motheo Digital Cafe emblem" width="38" height="38"/>
+    <div>
+      <div class="brand-text">MOTHEO DIGITAL CAFE</div>
+      <small class="brand-sub">Orange Farm · Drieziek</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="cafe.html">Café &amp; Prices</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+    <li><a href="contact.html" class="nav-book">Enquire →</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <span class="eyebrow reveal">— Get In Touch</span>
+  <h1 class="reveal">LET'S<br><span class="outline">TALK</span></h1>
+  <p class="reveal">Need a website built or a computer repaired? Want to know when the café opens? Reach out — we're always happy to help the Orange Farm community.</p>
+</div>
+
+<div class="contact-layout">
+  <!-- FORM -->
+  <div class="form-card reveal-l">
+    <h2>Send Us a Message</h2>
+    <p>Fill in the form and we'll get back to you within a few hours.</p>
+
+    <form id="contactForm">
+      <div class="form-row">
+        <div class="fg">
+          <label>Your Name <span class="req">*</span></label>
+          <input type="text" id="cname" placeholder="Full name" required/>
+        </div>
+        <div class="fg">
+          <label>Phone / WhatsApp <span class="req">*</span></label>
+          <input type="tel" id="cphone" placeholder="+27 63 000 0000" required/>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Email Address</label>
+        <input type="email" id="cemail" placeholder="your@email.com"/>
+      </div>
+      <div class="fg">
+        <label>What can we help with? <span class="req">*</span></label>
+        <div class="subject-pills" id="subjectPills">
+          <span class="s-pill" onclick="selectSubject(this,'Internet Café')">Internet Café</span>
+          <span class="s-pill" onclick="selectSubject(this,'Printing / Scanning')">Printing / Scanning</span>
+          <span class="s-pill" onclick="selectSubject(this,'PC Repair')">PC Repair</span>
+          <span class="s-pill" onclick="selectSubject(this,'Web Design')">Web Design</span>
+          <span class="s-pill" onclick="selectSubject(this,'Tech Training')">Tech Training</span>
+          <span class="s-pill" onclick="selectSubject(this,'General Enquiry')">General Enquiry</span>
+        </div>
+        <input type="hidden" id="csubject"/>
+      </div>
+      <div class="fg">
+        <label>Message <span class="req">*</span></label>
+        <textarea id="cmessage" placeholder="Tell us more about what you need..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="csubmitBtn">SEND MESSAGE →</button>
+      <div class="alert success" id="cSuccessMsg">✅ Message sent! We'll reply via WhatsApp or email within a few hours.</div>
+      <div class="alert error" id="cErrorMsg">❌ Something went wrong. Please WhatsApp or call us directly.</div>
+    </form>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar reveal-r">
+    <div class="side-card">
+      <h3>📞 Contact Details</h3>
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <div><span class="ci-label">Phone / WhatsApp</span><span class="ci-val"><a href="tel:+27638763337">+27 63 876 3337</a></span></div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <div><span class="ci-label">Email</span><span class="ci-val"><a href="mailto:motheomnaledi@gmail.com">motheomnaledi@gmail.com</a></span></div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <div><span class="ci-label">Location</span><span class="ci-val">Orange Farm, Drieziek<br/>Johannesburg, Gauteng</span></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h3>⏰ Opening Hours</h3>
+      <div class="hours-grid">
+        <div class="hour-item"><span class="hour-day">Mon</span><span class="hour-time">8AM – 6PM</span></div>
+        <div class="hour-item"><span class="hour-day">Tue</span><span class="hour-time">8AM – 6PM</span></div>
+        <div class="hour-item"><span class="hour-day">Wed</span><span class="hour-time">8AM – 6PM</span></div>
+        <div class="hour-item"><span class="hour-day">Thu</span><span class="hour-time">8AM – 6PM</span></div>
+        <div class="hour-item"><span class="hour-day">Fri</span><span class="hour-time">8AM – 6PM</span></div>
+        <div class="hour-item"><span class="hour-day">Sat</span><span class="hour-time">9AM – 3PM</span></div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <h3>🔗 Quick Links</h3>
+      <div class="quick-links">
+        <a href="services.html#web" class="quick-link">🌍 Web Design <span>→</span></a>
+        <a href="services.html#repairs" class="quick-link">🔧 Computer Repairs <span>→</span></a>
+        <a href="services.html" class="quick-link">🛠️ All Services <span>→</span></a>
+        <a href="about.html" class="quick-link">👋 About Us <span>→</span></a>
+      </div>
+    </div>
+
+    <a href="https://wa.me/27638763337?text=Hi%20Motheo%20Digital%20Cafe%2C%20I%20have%20an%20enquiry." class="wa-btn" target="_blank">💬 WHATSAPP US NOW</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section" style="padding-top:0">
+  <span class="sec-label reveal">— Common Questions</span>
+  <h2 class="sec-title reveal">FAQ</h2>
+  <div class="faq-list">
+    <div class="faq-item reveal" style="transition-delay:.05s">
+      <div class="faq-q" onclick="toggleFaq(this)">Which services are available right now? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>Web design and computer repairs are available today, by appointment. The internet café, printing, scanning and tech training are launching soon — get in touch and we'll let you know the moment they open.</p></div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.08s">
+      <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>We accept cash, EFT bank transfer, and SnapScan. We do not yet have a card machine. For large jobs, a deposit may be required.</p></div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.11s">
+      <div class="faq-q" onclick="toggleFaq(this)">How long does a PC repair take? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>Simple software fixes like virus removal or Windows reinstall are usually done same-day or next day. Hardware repairs depend on parts availability. We always give you an honest timeline upfront.</p></div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.14s">
+      <div class="faq-q" onclick="toggleFaq(this)">Can you build me a website for my business? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>Yes — web design is one of our two live services. We build affordable, mobile-friendly websites for small businesses and entrepreneurs in Orange Farm, and we can host them online too. Get in touch for a quote. CV typing and online job-application help will follow when the café opens.</p></div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.17s">
+      <div class="faq-q" onclick="toggleFaq(this)">Will you offer WiFi for my own phone or laptop? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>Yes — WiFi hotspot access for your own device is part of the café we're opening soon. We'll announce rates closer to launch. Reach out and we'll keep you posted.</p></div>
+    </div>
+    <div class="faq-item reveal" style="transition-delay:.2s">
+      <div class="faq-q" onclick="toggleFaq(this)">Where exactly are you located in Orange Farm? <div class="faq-icon">+</div></div>
+      <div class="faq-a"><p>We're based in Drieziek, Orange Farm, Johannesburg. Call or WhatsApp us on +27 63 876 3337 and we'll send you exact directions.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name"><img src="emblem.png" alt="" width="24" height="24" style="vertical-align:middle;margin-right:10px"/>MOTHEO DIGITAL CAFE</div>
+      <p class="footer-desc">Bringing quality digital services and tech solutions to Orange Farm. Your community hub for internet, printing, repairs, and tech support.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cafe.html">Café &amp; Prices</a></li>
+        <li><a href="booking.html">Booking (soon)</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="cafe.html">Internet Access</a></li>
+        <li><a href="cafe.html">Printing</a></li>
+        <li><a href="services.html">PC Repairs</a></li>
+        <li><a href="services.html">Web Design</a></li>
+        <li><a href="services.html">IT Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><span>📞 +27 63 876 3337</span></li>
+        <li><span>✉️ motheomnaledi@gmail.com</span></li>
+        <li><span>📍 Orange Farm, Drieziek</span></li>
+        <li><span>🕐 Mon–Fri: 8AM–6PM</span></li>
+        <li><span>🕐 Sat: 9AM–3PM</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Motheo Digital Cafe. All rights reserved.</p>
+    <p>Orange Farm · Drieziek · Johannesburg</p>
+  </div>
+</footer>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function ar(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar)}ar();
+window.addEventListener('scroll',()=>document.getElementById('btt').classList.toggle('show',scrollY>400));
+
+function selectSubject(el,val){
+  document.querySelectorAll('.s-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('csubject').value=val;
+}
+
+function toggleFaq(el){
+  const item=el.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+// EmailJS contact form
+const EMAILJS_SERVICE_ID='YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID='YOUR_CONTACT_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY='YOUR_PUBLIC_KEY';
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+document.getElementById('contactForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const subj=document.getElementById('csubject').value;
+  if(!subj){alert('Please select a subject.');return;}
+  const btn=document.getElementById('csubmitBtn');
+  btn.disabled=true;btn.textContent='SENDING...';
+  const params={
+    to_email:'motheomnaledi@gmail.com',
+    from_name:document.getElementById('cname').value,
+    from_phone:document.getElementById('cphone').value,
+    from_email:document.getElementById('cemail').value||'Not provided',
+    subject:subj,
+    message:document.getElementById('cmessage').value,
+  };
+  try{
+    if(EMAILJS_SERVICE_ID==='YOUR_SERVICE_ID'){
+      await new Promise(r=>setTimeout(r,1200));
+      document.getElementById('cSuccessMsg').style.display='block';
+      this.reset();document.querySelectorAll('.s-pill').forEach(p=>p.classList.remove('active'));
+    }else{
+      await emailjs.send(EMAILJS_SERVICE_ID,EMAILJS_TEMPLATE_ID,params);
+      document.getElementById('cSuccessMsg').style.display='block';
+      this.reset();document.querySelectorAll('.s-pill').forEach(p=>p.classList.remove('active'));
+    }
+  }catch(err){document.getElementById('cErrorMsg').style.display='block';}
+  btn.disabled=false;btn.textContent='SEND MESSAGE →';
+});
+
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
