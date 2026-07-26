@@ -7,9 +7,12 @@
 <meta name="description" content="Contact Motheo Digital Cafe in Drieziek, Orange Farm. Call, WhatsApp or book a job online.">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="assets/favicon.png">
+<meta property="og:title" content="Contact &amp; booking — Motheo Digital Cafe">
+<meta property="og:description" content="Contact Motheo Digital Cafe in Drieziek, Orange Farm. Call, WhatsApp or book a job online.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +20,7 @@
 <header class="nav">
   <div class="nav-in">
     <a class="brand" href="index.html"><b>Motheo</b><i>Digital Cafe</i></a>
-    <nav aria-label="Main"><ul class="nav-links" id="menu"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="prices.html">Prices</a></li><li><a href="about.html">About</a></li><li><a href="contact.html" aria-current="page">Contact</a></li></ul></nav>
+    <nav aria-label="Main"><ul class="nav-links" id="menu"><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="prices.html">Prices</a></li><li><a href="fix.html">Fix it yourself</a></li><li><a href="about.html">About</a></li><li><a href="contact.html" aria-current="page">Contact</a></li></ul></nav>
     <a class="pill pill-solid pill-sm nav-cta" href="contact.html">Book a job</a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu">
       <span></span><span></span><span></span></button>
@@ -27,32 +30,33 @@
 <section class="hero">
   <div class="wrap">
     <p class="eyebrow on-ink">Contact</p>
-    <h1>Talk to<br><span class="stroke">us</span></h1>
-    <p>Fastest way is WhatsApp. Send a photo of the problem or the document and we
-    will come back with a price.</p>
+    <h1>Get in touch.</h1>
+    <p>Fastest way is WhatsApp. Send a photo of the problem or the document and we will
+    come back with a price.</p>
     <div class="hero-cta">
       <a class="pill pill-invert" href="https://wa.me/27638763337">WhatsApp +27 63 876 3337</a>
       <a class="pill pill-ghost" href="tel:+27638763337"><span>Call us</span></a>
     </div>
   </div>
 </section>
-<div class="marquee" aria-hidden="true"><div class="marquee-track"><span>Internet from R8 —</span><span>Prints from R2 —</span><span>CV typed &amp; printed R80 —</span><span>Scan to email R5 —</span><span>Laminating R15 —</span><span>Repairs from R50 —</span><span>Websites from R1 800 —</span><span>Computer basics R650 —</span><span>Open Mon–Sat —</span><span>Internet from R8 —</span><span>Prints from R2 —</span><span>CV typed &amp; printed R80 —</span><span>Scan to email R5 —</span><span>Laminating R15 —</span><span>Repairs from R50 —</span><span>Websites from R1 800 —</span><span>Computer basics R650 —</span><span>Open Mon–Sat —</span></div></div>
+<div class="trustbar"><ul><li><span><b>Published pricing</b>Every rate on the wall, from R2 a page.</span></li><li><span><b>R50 diagnosis</b>Waived in full if you go ahead with the repair.</span></li><li><span><b>Run by an IT officer</b>MS-900 certified, Microsoft 365 and Entra ID.</span></li><li><span><b>Drieziek, Orange Farm</b>Mon–Fri 08:00–18:00 · Sat 09:00–15:00.</span></li></ul></div>
 
 <section class="sec">
   <div class="wrap">
     <div class="sec-head rv"><p class="eyebrow">Book a job</p>
       <h2 class="sec-title">Tell us what you need</h2>
       <p class="sec-sub">Send this and we will reply with a price and a time. Walk-in printing
-      and scanning does not need a booking.</p></div>
-    <form class="form rv" action="mailto:motheomnaledi@gmail.com" method="post" enctype="text/plain">
+      and scanning does not need a booking. Broken device? Run the
+      <a href="fix.html">free troubleshooter</a> first and send us the results.</p></div>
+    <form class="form rv" action="mailto:naledi@motheodigitalcafe.co.za" method="post" enctype="text/plain">
       <div class="field"><label for="n">Your name</label>
-        <input id="n" name="name" type="text" required></div>
+        <input id="n" name="name" type="text" autocomplete="name" required></div>
       <div class="field"><label for="p">Phone or WhatsApp number</label>
-        <input id="p" name="phone" type="tel" required></div>
+        <input id="p" name="phone" type="tel" autocomplete="tel" required></div>
       <div class="field"><label for="s">Service</label>
         <select id="s" name="service"><option>Internet and workstations</option><option>Printing and copying</option><option>Documents and typing</option><option>Online applications</option><option>Repairs and IT support</option><option>Websites and design</option><option>Bulk and business accounts</option><option>Training</option></select></div>
       <div class="field"><label for="m">What do you need?</label>
-        <textarea id="m" name="message" placeholder="For example: HP laptop will not switch on, or I need a 3-page CV typed and printed." required></textarea></div>
+        <textarea id="m" name="message" placeholder="For example: HP laptop will not switch on, already tried a different charger. Or: I need a 3-page CV typed and printed." required></textarea></div>
       <div><button class="pill pill-solid" type="submit">Send the request</button></div>
     </form>
   </div>
@@ -64,17 +68,25 @@
       <div><h3>Where</h3><p>Drieziek<br>Orange Farm<br>Johannesburg</p></div>
       <div><h3>When</h3><p>Mon–Fri 08:00–18:00<br>Saturday 09:00–15:00<br>Sunday closed</p></div>
       <div><h3>Reach us</h3><p><a href="tel:+27638763337">+27 63 876 3337</a><br>
-        <a href="https://wa.me/27638763337">WhatsApp</a><br><a href="mailto:motheomnaledi@gmail.com">motheomnaledi@gmail.com</a></p></div>
+        <a href="https://wa.me/27638763337">WhatsApp</a><br><a href="mailto:naledi@motheodigitalcafe.co.za">naledi@motheodigitalcafe.co.za</a></p></div>
     </div>
+    <p class="sec-sub rv" style="margin-top:1.4rem">Email not working?
+    Try <a href="mailto:motheomnaledi@gmail.com">motheomnaledi@gmail.com</a>.</p>
   </div>
 </section>
 
+<section class="sec">
+  <div class="wrap">
+    <div class="xref rv">
+      <p class="eyebrow">Where to next</p>
+      <div class="xref-grid"><a class="xref-card" href="prices.html"><em>Next</em><b>Prices</b><span>Know the cost before you come in.</span></a><a class="xref-card" href="fix.html"><em>Also</em><b>Fix it yourself</b><span>Try the free guide first — it might save you the trip.</span></a><a class="xref-card" href="services.html"><em>Also</em><b>Services</b><span>Everything we can help with.</span></a></div>
+    </div>
+  </div>
+</section>
 <section class="band">
   <div class="wrap">
     <h2>Prices are on the wall.</h2><p>No guessing, no haggling. Check what your job costs before you come in.</p>
-    <div class="band-cta">
-      <a class="pill pill-invert" href="prices.html">See the full price list</a><a class="pill pill-ghost" href="https://wa.me/27638763337"><span>WhatsApp us</span></a>
-    </div>
+    <div class="band-cta"><a class="pill pill-invert" href="prices.html">See the full price list</a><a class="pill pill-ghost" href="https://wa.me/27638763337"><span>WhatsApp us</span></a></div>
   </div>
 </section>
 </main>
@@ -85,21 +97,22 @@
         <h4>Motheo Digital Cafe</h4>
         <p>A community digital counter in Drieziek, Orange Farm. Internet, printing,
         documents, repairs, websites and training — priced so the whole street can use it.</p>
+        <p style="margin-top:.8rem">Run by <a href="about.html">Naledi Motheo</a>,
+        IT officer. <a href="https://motheotech.github.io/naledi-portfolio/" target="_blank" rel="noopener">Professional portfolio &#8599;</a></p>
       </div>
-      <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="prices.html">Prices</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
-      <div><h4>Services</h4><ul><li><a href="services.html">Internet &amp; workstations</a></li><li><a href="services.html">Printing &amp; copying</a></li><li><a href="services.html">Documents &amp; typing</a></li><li><a href="services.html">Online applications</a></li><li><a href="services.html">Repairs &amp; IT support</a></li><li><a href="services.html">Websites &amp; design</a></li><li><a href="services.html">Training</a></li></ul></div>
+      <div><h4>Pages</h4><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li><a href="prices.html">Prices</a></li><li><a href="fix.html">Fix it yourself</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div><h4>Services</h4><ul><li><a href="services.html">Internet &amp; workstations</a></li><li><a href="services.html">Printing &amp; copying</a></li><li><a href="services.html">Documents &amp; typing</a></li><li><a href="services.html">Online applications</a></li><li><a href="services.html">Repairs &amp; IT support</a></li><li><a href="services.html">Websites &amp; design</a></li><li><a href="services.html">Bulk &amp; business accounts</a></li><li><a href="services.html">Training</a></li></ul></div>
       <div>
         <h4>Find us</h4>
         <ul>
           <li><a href="tel:+27638763337">+27 63 876 3337</a></li>
           <li><a href="https://wa.me/27638763337">WhatsApp</a></li>
-          <li><a href="mailto:motheomnaledi@gmail.com">motheomnaledi@gmail.com</a></li>
+          <li><a href="mailto:naledi@motheodigitalcafe.co.za">naledi@motheodigitalcafe.co.za</a></li>
           <li><p>Drieziek, Orange Farm, Johannesburg</p></li>
           <li><p>Mon–Fri 08:00–18:00 · Sat 09:00–15:00</p></li>
         </ul>
       </div>
     </div>
-    <div class="foot-word" aria-hidden="true">Motheo Digital Cafe</div>
     <div class="foot-bottom">
       <span>&copy; 2026 Motheo Digital Cafe</span>
       <span>Drieziek · Orange Farm · Johannesburg</span>
