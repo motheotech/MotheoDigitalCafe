@@ -131,7 +131,7 @@
         'you already know which step it was — that is worth telling us.</p>' +
         '<div class="cons-actions">' +
           '<button type="button" class="cbtn cbtn-no" data-act="reset">Fix something else</button>' +
-          '<a class="cbtn cbtn-yes" href="prices.html">See what we charge</a>' +
+          '<a class="cbtn cbtn-yes" href="/prices/">See what we charge</a>' +
         '</div>' +
         extLink(f) +
       '</div>';
@@ -147,7 +147,7 @@
         '<div class="cons-actions">' +
           '<a class="cbtn cbtn-yes" href="' + waLink() + '" target="_blank" rel="noopener noreferrer">' +
             'Send this to us on WhatsApp</a>' +
-          '<a class="cbtn cbtn-no" href="contact.html">Book a repair</a>' +
+          '<a class="cbtn cbtn-no" href="/contact/">Book a repair</a>' +
           '<button type="button" class="cbtn-back" data-act="reset">Start over</button>' +
         '</div>' +
         '<p class="cons-credit" style="margin-top:1rem">The WhatsApp message is filled in for you, ' +
