@@ -28,7 +28,8 @@ is a dead end.
 - `fix-data.js` — the troubleshooting flows (this is the file you edit)
 - `fix-console.js` — the console engine
 - `check-links.sh` — verifies every outbound URL
-- `assets/` — logo, emblem, favicons
+- `assets/` — logos (`logo-dark.png` header, `logo-light.png` footer), emblem, favicons, `og-image.jpg`
+- `assets/brand/` — full-size logo files and merchandise mockups
 
 Static site, no build step. Open `index.html`, or deploy the folder to GitHub Pages.
 
