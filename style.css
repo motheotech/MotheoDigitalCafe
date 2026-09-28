@@ -418,3 +418,8 @@ h2.sec-title{
 .pill-ghost-dark{background:transparent;border:1px solid var(--line);color:var(--brand)}
 .pill-ghost-dark:hover{border-color:var(--brand);background:var(--brand-lt)}
 .form-note{font-size:.8rem;color:var(--slate);margin:0}
+
+/* ---------- development notice ---------- */
+.devbar{background:#fff4d6;border-bottom:1px solid #f1d98a;color:#5c4400;font-size:.85rem;line-height:1.45}
+.devbar-in{max-width:var(--wrap);margin:0 auto;padding:.55rem var(--gut);text-align:center}
+.devbar b{color:#3d2d00}
