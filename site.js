@@ -19,3 +19,33 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   els.forEach(function (e) { io.observe(e); });
 })();
+
+/* Booking form: sends through WhatsApp or email, no server needed */
+(function () {
+  var f = document.getElementById('book-form');
+  if (!f) return;
+  var WA = '27638763337', MAIL = 'naledi@motheodigitalcafe.co.za';
+  function text() {
+    var v = function (id) { return (document.getElementById(id).value || '').trim(); };
+    return 'Hi Motheo Digital Cafe, I would like to book a job.\n\n' +
+      'Name: ' + v('n') + '\nNumber: ' + v('p') + '\nService: ' + v('s') +
+      '\n\n' + v('m');
+  }
+  function ok() {
+    if (f.checkValidity()) return true;
+    f.reportValidity(); return false;
+  }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!ok()) return;
+    window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(text()), '_blank', 'noopener');
+  });
+  var em = document.getElementById('book-email');
+  if (em) em.addEventListener('click', function () {
+    if (!ok()) return;
+    window.location.href = 'mailto:' + MAIL + '?subject=' +
+      encodeURIComponent('Job request from ' + document.getElementById('n').value.trim()) +
+      '&body=' + encodeURIComponent(text());
+  });
+})();
+

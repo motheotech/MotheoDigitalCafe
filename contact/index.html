@@ -55,7 +55,7 @@
       and scanning does not need a booking. Broken device? Run the
       <a href="/fix/">free troubleshooter</a> first and send us the results.</p></div>
     <div class="book-grid">
-    <form class="form rv" action="mailto:naledi@motheodigitalcafe.co.za" method="post" enctype="text/plain">
+    <form class="form rv" id="book-form" novalidate>
       <div class="field"><label for="n">Your name</label>
         <input id="n" name="name" type="text" autocomplete="name" required></div>
       <div class="field"><label for="p">Phone or WhatsApp number</label>
@@ -64,7 +64,9 @@
         <select id="s" name="service"><option>Internet and workstations</option><option>Printing and copying</option><option>Documents and typing</option><option>Online applications</option><option>Repairs and IT support</option><option>Websites and design</option><option>Bulk and business accounts</option><option>Training</option></select></div>
       <div class="field"><label for="m">What do you need?</label>
         <textarea id="m" name="message" placeholder="For example: HP laptop will not switch on, already tried a different charger. Or: I need a 3-page CV typed and printed." required></textarea></div>
-      <div><button class="pill pill-solid" type="submit">Send the request</button></div>
+      <div class="form-actions"><button class="pill pill-solid" type="submit">Send on WhatsApp</button>
+        <button class="pill pill-ghost-dark" type="button" id="book-email">Send by email instead</button></div>
+      <p class="form-note">Your message opens in WhatsApp or your email app, ready to send. Nothing is stored on this website.</p>
     </form>
     <div class="map rv">
       <iframe title="Map to Motheo Digital Cafe, Drieziek 5, Orange Farm" src="https://maps.google.com/maps?q=Motheo%20Digital%20Cafe%2C%20Drieziek%205%2C%20Orange%20Farm%2C%20Johannesburg%2C%201841%2C%20South%20Africa&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>

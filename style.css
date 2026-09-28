@@ -413,3 +413,8 @@ h2.sec-title{
   padding:.9rem 1.1rem;border-top:1px solid var(--line);font-size:.88rem;color:var(--slate)}
 .map-foot b{color:var(--ink)}
 @media (max-width:900px){.book-grid{grid-template-columns:1fr}.map{min-height:360px}}
+
+.form-actions{display:flex;flex-wrap:wrap;gap:.6rem}
+.pill-ghost-dark{background:transparent;border:1px solid var(--line);color:var(--brand)}
+.pill-ghost-dark:hover{border-color:var(--brand);background:var(--brand-lt)}
+.form-note{font-size:.8rem;color:var(--slate);margin:0}
